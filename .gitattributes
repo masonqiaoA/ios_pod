@@ -1,0 +1,2 @@
+Frameworks/AtomicXCore.xcframework/**/AtomicXCore.framework/AtomicXCore filter=lfs diff=lfs merge=lfs -text
+Frameworks/RTCRoomEngine.xcframework/**/RTCRoomEngine.framework/RTCRoomEngine filter=lfs diff=lfs merge=lfs -text
