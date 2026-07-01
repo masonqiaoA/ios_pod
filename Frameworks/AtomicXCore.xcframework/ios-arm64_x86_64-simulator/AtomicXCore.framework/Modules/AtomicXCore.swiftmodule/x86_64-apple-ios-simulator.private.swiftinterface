@@ -2903,22 +2903,7 @@ public enum RecordingStatus : Swift.Int {
 }
 public enum RecordingStopReason : Swift.Int {
   case stoppedByUser
-  case roomDismissed
-  case maxDurationReached
-  case storageLimitReached
-  public init?(rawValue: Swift.Int)
-  public typealias RawValue = Swift.Int
-  public var rawValue: Swift.Int {
-    get
-  }
-}
-public enum RecordingError : Swift.Int {
-  case noError
-  case noPermission
-  case featureNotEnabled
-  case storageNotConfigured
-  case serviceUnavailable
-  case unknownError
+  case recorderLeftRoom
   public init?(rawValue: Swift.Int)
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
@@ -3452,6 +3437,3 @@ extension AtomicXCore.RecordingStatus : Swift.RawRepresentable {}
 extension AtomicXCore.RecordingStopReason : Swift.Equatable {}
 extension AtomicXCore.RecordingStopReason : Swift.Hashable {}
 extension AtomicXCore.RecordingStopReason : Swift.RawRepresentable {}
-extension AtomicXCore.RecordingError : Swift.Equatable {}
-extension AtomicXCore.RecordingError : Swift.Hashable {}
-extension AtomicXCore.RecordingError : Swift.RawRepresentable {}
