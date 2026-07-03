@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'RTCRoomEngine'
-  s.version          = '3.7.0.417'
+  s.version          = '3.7.0.418'
   s.summary          = 'RTCRoomEngine SDK (mirror for uni-app uts plugin)'
   s.description      = 'Binary mirror of RTCRoomEngine.xcframework for consumption via uni-app uts plugin dependencies-pods repo config. Not a redistribution.'
   s.homepage         = 'https://github.com/masonqiaoA/ios_pod'
