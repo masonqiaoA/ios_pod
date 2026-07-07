@@ -409,6 +409,9 @@ typedef NS_ENUM(NSInteger, TUIVideoRenderParamsFillMode) {
     /// 适应模式：即按画面长边进行缩放以适应显示区域，短边部分会被填充为黑色，此模式下图像完整但可能留有黑边。
     TUIVideoRenderParamsFillModeFit = 1,
 
+    /// 拉伸填充模式：将画面拉伸以充满整个显示区域，此模式下画面内容会被拉伸，可能产生变形。
+    TUIVideoRenderParamsFillModeScaleFill = 2,
+
 };
 
 /**
