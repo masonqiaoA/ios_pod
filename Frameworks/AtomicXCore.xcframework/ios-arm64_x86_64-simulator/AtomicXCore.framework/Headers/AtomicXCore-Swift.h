@@ -820,7 +820,6 @@ SWIFT_CLASS("_TtC11AtomicXCore12LiveCoreView")
 
 
 
-
 @interface LiveCoreView (SWIFT_EXTENSION(AtomicXCore))
 - (void)didMoveToWindow;
 @end
@@ -1900,7 +1899,6 @@ SWIFT_CLASS("_TtC11AtomicXCore12LiveCoreView")
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
 - (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
 @end
-
 
 
 

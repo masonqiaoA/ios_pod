@@ -820,7 +820,6 @@ SWIFT_CLASS("_TtC11AtomicXCore12LiveCoreView")
 
 
 
-
 @interface LiveCoreView (SWIFT_EXTENSION(AtomicXCore))
 - (void)didMoveToWindow;
 @end
