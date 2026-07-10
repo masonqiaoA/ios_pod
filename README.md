@@ -4,8 +4,8 @@ iOS SDK binary mirror for uni-app uts plugin (debug only).
 
 ## Contents
 
-- `AtomicXCore.xcframework` — version `4.2.2.65`
-- `RTCRoomEngine.xcframework` — version `4.2.2.65`
+- `AtomicXCore.xcframework` — version `4.2.2.66`
+- `RTCRoomEngine.xcframework` — version `4.2.2.66`
 
 Both store under `Frameworks/`. Each is a complete xcframework (device + simulator slices).
 
@@ -20,14 +20,14 @@ In `utssdk/app-ios/config.json`:
       "name": "AtomicXCore",
       "repo": {
         "git": "https://github.com/masonqiaoA/ios_pod.git",
-        "tag": "4.2.2.65"
+        "tag": "4.2.2.66"
       }
     },
     {
       "name": "RTCRoomEngine",
       "repo": {
         "git": "https://github.com/masonqiaoA/ios_pod.git",
-        "tag": "4.2.2.65"
+        "tag": "4.2.2.66"
       }
     }
   ]
