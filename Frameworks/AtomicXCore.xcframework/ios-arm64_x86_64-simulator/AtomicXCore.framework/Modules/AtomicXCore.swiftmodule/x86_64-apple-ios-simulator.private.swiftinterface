@@ -164,6 +164,177 @@ public enum AITranscriberStoreEvent {
   @objc override dynamic public init()
   @objc deinit
 }
+@_hasMissingDesignatedInitializers public class AtomicPlayer {
+  public func setObserver(_ observer: (any AtomicXCore.AtomicPlayerObserver)?)
+  public func setRenderView(_ view: AtomicXCore.AtomicView)
+  public func setRenderRotation(_ rotation: RTCRoomEngine.TUIVideoRenderParamsRotation)
+  public func setRenderFillMode(_ fillMode: RTCRoomEngine.TUIVideoRenderParamsFillMode)
+  public func snapshot()
+  public func setVolume(_ volume: Swift.Int)
+  public func startPlay(url: Swift.String)
+  public func stopPlay()
+  public func pause()
+  public func resume()
+  public func switchStream(url: Swift.String)
+  public func enableReceiveSeiMessage(enable: Swift.Bool, payloadType: Swift.Int)
+  public func enableAdvancedFeature(key: Swift.String, value: Any)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers public class AtomicPlayerImpl : AtomicXCore.AtomicPlayer {
+  public init()
+  override public func setObserver(_ observer: (any AtomicXCore.AtomicPlayerObserver)?)
+  override public func setRenderView(_ view: AtomicXCore.AtomicView)
+  override public func setRenderRotation(_ rotation: RTCRoomEngine.TUIVideoRenderParamsRotation)
+  override public func setRenderFillMode(_ fillMode: RTCRoomEngine.TUIVideoRenderParamsFillMode)
+  override public func snapshot()
+  override public func setVolume(_ volume: Swift.Int)
+  override public func startPlay(url: Swift.String)
+  override public func stopPlay()
+  override public func pause()
+  override public func resume()
+  override public func switchStream(url: Swift.String)
+  override public func enableReceiveSeiMessage(enable: Swift.Bool, payloadType: Swift.Int)
+  override public func enableAdvancedFeature(key: Swift.String, value: Any)
+  public func release()
+  @objc deinit
+}
+public enum AtomicPlayerCode : Swift.Int {
+  case ok
+  case errorFailed
+  case errorInvalidParameter
+  case errorInstanceNotExist
+  case errorNoAvailableHevcDecoders
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public struct AtomicPlayerStatistics {
+  public var videoWidth: Swift.Int
+  public var videoHeight: Swift.Int
+  public var videoBitrate: Swift.Int
+  public var videoFps: Swift.Int
+  public var audioBitrate: Swift.Int
+  public init()
+}
+public protocol AtomicPlayerObserver : AnyObject {
+  func didRenderFirstVideoFrame(player: AtomicXCore.AtomicPlayer, elapsedMs: Swift.Int)
+  func didStartBuffering(player: AtomicXCore.AtomicPlayer)
+  func didEndBuffering(player: AtomicXCore.AtomicPlayer, elapsedMs: Swift.Int)
+  func didConnect(player: AtomicXCore.AtomicPlayer)
+  func didDisconnect(player: AtomicXCore.AtomicPlayer)
+  func didTakeSnapshot(player: AtomicXCore.AtomicPlayer, image: UIKit.UIImage)
+  func didChangeVideoSize(player: AtomicXCore.AtomicPlayer, width: Swift.Int, height: Swift.Int)
+  func didSwitchStream(player: AtomicXCore.AtomicPlayer, streamUrl: Swift.String, code: AtomicXCore.AtomicPlayerCode)
+  func didFailWithCode(player: AtomicXCore.AtomicPlayer, code: AtomicXCore.AtomicPlayerCode, message: Swift.String)
+  func didUpdateStatistics(player: AtomicXCore.AtomicPlayer, stats: AtomicXCore.AtomicPlayerStatistics)
+  func didReceiveSEI(player: AtomicXCore.AtomicPlayer, data: Foundation.Data)
+}
+@_hasMissingDesignatedInitializers public class AtomicPusher {
+  public static var shared: AtomicXCore.AtomicPusher {
+    get
+  }
+  public var pusherState: AtomicXCore.StatePublisher<AtomicXCore.PusherState> {
+    get
+  }
+  public var pusherEvent: Combine.PassthroughSubject<AtomicXCore.PusherEvent, Swift.Never> {
+    get
+  }
+  public func setView(_ view: AtomicXCore.AtomicView)
+  public func startPush(config: AtomicXCore.PusherConfig)
+  public func stopPush()
+  public func enableAdvancedFeature(key: Swift.String, value: Any)
+  public func release()
+  @objc deinit
+}
+public enum PusherCode : Swift.Int {
+  case OK
+  case ERROR_FAILED
+  case ERROR_INVALID_PARAMETER
+  case ERROR_REFUSED
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum PusherConnectState : Swift.Int {
+  case DISCONNECTED
+  case CONNECTING
+  case CONNECTED
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public struct PusherStatistics {
+  public var videoWidth: Swift.Int
+  public var videoHeight: Swift.Int
+  public var videoFps: Swift.Int
+  public var videoBitrate: Swift.Int
+  public var audioBitrate: Swift.Int
+  public var rtt: Swift.Int
+  public var packetLossRate: Swift.Int
+  public init()
+}
+public struct PusherState {
+  public var connectState: AtomicXCore.PusherConnectState
+  public var statistics: AtomicXCore.PusherStatistics
+  public init()
+}
+public enum PusherEvent {
+  case pusherError(code: AtomicXCore.PusherCode, message: Swift.String)
+  case liveEnded(reason: AtomicXCore.PusherEvent.EndedReason, summary: AtomicXCore.PusherEvent.PusherSummary?)
+  case kickedOut(reason: AtomicXCore.PusherEvent.KickedOutReason, message: Swift.String)
+  public enum EndedReason : Swift.Int {
+    case ENDED_BY_HOST
+    case ENDED_BY_SERVER
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  public enum KickedOutReason : Swift.Int {
+    case BY_ADMIN
+    case BY_LOGGED_ON_OTHER_DEVICE
+    case BY_SERVER
+    case FOR_NETWORK_DISCONNECTED
+    case FOR_LIVE_CHANNEL_EXPIRED
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  public struct PusherSummary {
+    public var totalViewers: Swift.Int
+    public var totalGiftsSent: Swift.Int
+    public var totalGiftCoins: Swift.Int
+    public var totalUniqueGiftSenders: Swift.Int
+    public var totalLikesReceived: Swift.Int
+    public var totalMessageCount: Swift.Int
+    public var liveDuration: Swift.Int
+    public init()
+  }
+}
+public struct PusherConfig {
+  public var liveID: Swift.String
+  public var liveName: Swift.String
+  public var coverURL: Swift.String
+  public var backgroundURL: Swift.String
+  public var isPublicVisible: Swift.Bool
+  public init(liveID: Swift.String, liveName: Swift.String, coverURL: Swift.String, backgroundURL: Swift.String = "", isPublicVisible: Swift.Bool = true)
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class AtomicView : AtomicXCore.LiveCoreView {
+  @_Concurrency.MainActor public func getPlayerRenderView() -> UIKit.UIView?
+  @_Concurrency.MainActor @preconcurrency public init(frame: CoreFoundation.CGRect = .zero)
+  @_Concurrency.MainActor @preconcurrency required public init(viewType: AtomicXCore.CoreViewType, frame: CoreFoundation.CGRect = .zero)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func didMoveToWindow()
+  @objc deinit
+}
 public enum AudioChangerType : Swift.Int {
   case none
   case child
@@ -356,12 +527,19 @@ public enum VolumeLevel : Swift.Int {
     get
   }
 }
+public protocol CallViewAdapter : AnyObject {
+  func onCreateOverlayView(layout: AtomicXCore.CallLayoutTemplate) -> UIKit.UIView?
+}
 @objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class CallCoreView : UIKit.UIView {
   @_Concurrency.MainActor @preconcurrency public static var defaultAvatarImage: UIKit.UIImage?
   @_Concurrency.MainActor @preconcurrency public static var waitingAnimationImage: UIKit.UIImage?
   @_Concurrency.MainActor @preconcurrency public static var volumeImages: [AtomicXCore.VolumeLevel : UIKit.UIImage]
   @_Concurrency.MainActor @preconcurrency public static var networkQualityImages: [AtomicXCore.NetworkQuality : UIKit.UIImage]
   @_Concurrency.MainActor @preconcurrency public static var participantAvatars: [Swift.String : UIKit.UIImage]
+  @_Concurrency.MainActor @preconcurrency weak public var callViewAdapter: (any AtomicXCore.CallViewAdapter)? {
+    get
+    set
+  }
   @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
   @_Concurrency.MainActor @preconcurrency public func setLayoutTemplate(_ template: AtomicXCore.CallLayoutTemplate)
   @_Concurrency.MainActor @preconcurrency public func setWaitingAnimation(path: Swift.String)
@@ -927,6 +1105,13 @@ extension AtomicXCore.StatePublisherSelector {
   public func setResult(value: Value, forStateHash stateHash: Foundation.UUID)
   public func map(_ state: State, stateHash: Foundation.UUID) -> Value
 }
+@_hasMissingDesignatedInitializers public class CameraTestViewManager {
+  public static let shared: AtomicXCore.CameraTestViewManager
+  public func register(viewID: Swift.String, view: UIKit.UIView)
+  public func unregister(viewID: Swift.String)
+  public func view(for viewID: Swift.String) -> UIKit.UIView?
+  @objc deinit
+}
 public enum DeviceType : Swift.Int {
   case microphone
   case camera
@@ -973,6 +1158,15 @@ public enum VideoQuality : Swift.UInt {
   case quality540P
   case quality720P
   case quality1080P
+  public init?(rawValue: Swift.UInt)
+  public typealias RawValue = Swift.UInt
+  public var rawValue: Swift.UInt {
+    get
+  }
+}
+public enum VideoOrientation : Swift.UInt {
+  case landscape
+  case portrait
   public init?(rawValue: Swift.UInt)
   public typealias RawValue = Swift.UInt
   public var rawValue: Swift.UInt {
@@ -1054,7 +1248,7 @@ public struct DeviceState {
   public func closeLocalCamera()
   public func switchCamera(isFront: Swift.Bool)
   public func switchMirror(mirrorType: AtomicXCore.MirrorType)
-  public func updateVideoQuality(_ quality: AtomicXCore.VideoQuality)
+  public func updateVideoQuality(_ quality: AtomicXCore.VideoQuality, orientation: AtomicXCore.VideoOrientation = .portrait)
   public func startScreenShare(appGroup: Swift.String)
   public func stopScreenShare()
   public func reset()
@@ -1784,6 +1978,7 @@ public struct LiveUserInfo {
   public var userID: Swift.String
   public var userName: Swift.String
   public var avatarURL: Swift.String
+  public var level: Swift.Int
   public init()
 }
 public struct LiveAudienceState {
@@ -1880,6 +2075,7 @@ public enum TakeSeatMode {
 public enum SeatLayoutTemplate {
   case videoDynamicGrid9Seats
   case videoDynamicFloat7Seats
+  case videoDynamicPip2Seats
   case videoLeftFocus9Seats
   case videoUniformGrid9Seats
   case videoFixedGrid9Seats
@@ -1919,15 +2115,9 @@ public struct LiveInfo {
   public var notice: Swift.String
   public var isMessageDisable: Swift.Bool
   public var isPublicVisible: Swift.Bool
-  @available(*, deprecated, message: "Deprecated since 3.7, use ``seatTemplate`` instead. This parameter will be automatically resolved internally.")
-  public var isSeatEnabled: Swift.Bool
   public var keepOwnerOnSeat: Swift.Bool
-  @available(*, deprecated, message: "Deprecated since 3.7, use ``seatTemplate`` instead. This parameter will be automatically resolved internally.")
-  public var maxSeatCount: Swift.Int
   public var seatMode: AtomicXCore.TakeSeatMode
   public var seatTemplate: AtomicXCore.SeatLayoutTemplate
-  @available(*, deprecated, message: "Deprecated since 3.7, use ``seatTemplate`` instead. This parameter will be automatically resolved internally.")
-  public var seatLayoutTemplateID: Swift.UInt
   public var coverURL: Swift.String
   public var backgroundURL: Swift.String
   public var categoryList: [Foundation.NSNumber]
@@ -1941,6 +2131,12 @@ public struct LiveInfo {
   public var totalViewerCount: Swift.Int
   public var isGiftEnabled: Swift.Bool
   public var metaData: [Swift.String : Swift.String]
+  @available(*, deprecated, message: "Deprecated since 3.7, use ``seatTemplate`` instead. This parameter will be automatically resolved internally.")
+  public var isSeatEnabled: Swift.Bool
+  @available(*, deprecated, message: "Deprecated since 3.7, use ``seatTemplate`` instead. This parameter will be automatically resolved internally.")
+  public var maxSeatCount: Swift.Int
+  @available(*, deprecated, message: "Deprecated since 3.7, use ``seatTemplate`` instead. This parameter will be automatically resolved internally.")
+  public var seatLayoutTemplateID: Swift.UInt
   public init(seatTemplate: AtomicXCore.SeatLayoutTemplate = .videoDynamicGrid9Seats)
   public var isEmpty: Swift.Bool {
     get
@@ -3225,6 +3421,21 @@ extension AtomicXCore.TranslationLanguage : Swift.RawRepresentable {}
 extension AtomicXCore.SourceLanguage : Swift.Equatable {}
 extension AtomicXCore.SourceLanguage : Swift.Hashable {}
 extension AtomicXCore.SourceLanguage : Swift.RawRepresentable {}
+extension AtomicXCore.AtomicPlayerCode : Swift.Equatable {}
+extension AtomicXCore.AtomicPlayerCode : Swift.Hashable {}
+extension AtomicXCore.AtomicPlayerCode : Swift.RawRepresentable {}
+extension AtomicXCore.PusherCode : Swift.Equatable {}
+extension AtomicXCore.PusherCode : Swift.Hashable {}
+extension AtomicXCore.PusherCode : Swift.RawRepresentable {}
+extension AtomicXCore.PusherConnectState : Swift.Equatable {}
+extension AtomicXCore.PusherConnectState : Swift.Hashable {}
+extension AtomicXCore.PusherConnectState : Swift.RawRepresentable {}
+extension AtomicXCore.PusherEvent.EndedReason : Swift.Equatable {}
+extension AtomicXCore.PusherEvent.EndedReason : Swift.Hashable {}
+extension AtomicXCore.PusherEvent.EndedReason : Swift.RawRepresentable {}
+extension AtomicXCore.PusherEvent.KickedOutReason : Swift.Equatable {}
+extension AtomicXCore.PusherEvent.KickedOutReason : Swift.Hashable {}
+extension AtomicXCore.PusherEvent.KickedOutReason : Swift.RawRepresentable {}
 extension AtomicXCore.AudioChangerType : Swift.Equatable {}
 extension AtomicXCore.AudioChangerType : Swift.Hashable {}
 extension AtomicXCore.AudioChangerType : Swift.RawRepresentable {}
@@ -3305,6 +3516,9 @@ extension AtomicXCore.AudioRoute : Swift.RawRepresentable {}
 extension AtomicXCore.VideoQuality : Swift.Equatable {}
 extension AtomicXCore.VideoQuality : Swift.Hashable {}
 extension AtomicXCore.VideoQuality : Swift.RawRepresentable {}
+extension AtomicXCore.VideoOrientation : Swift.Equatable {}
+extension AtomicXCore.VideoOrientation : Swift.Hashable {}
+extension AtomicXCore.VideoOrientation : Swift.RawRepresentable {}
 extension AtomicXCore.NetworkQuality : Swift.Equatable {}
 extension AtomicXCore.NetworkQuality : Swift.Hashable {}
 extension AtomicXCore.NetworkQuality : Swift.RawRepresentable {}

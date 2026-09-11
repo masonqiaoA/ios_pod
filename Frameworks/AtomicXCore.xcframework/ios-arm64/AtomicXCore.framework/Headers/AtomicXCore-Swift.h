@@ -431,136 +431,59 @@ SWIFT_CLASS("_TtC11AtomicXCore18AITranscriberStore")
 
 @class NSCoder;
 
-/// Core call view component responsible for video rendering and interactive display of the call interface. Supports multi-layout switching (single-person float/multi-person grid/picture-in-picture), call waiting animations, and personalized configuration of volume, network status, and user avatars.
-/// <code>CallCoreView</code> Core view component for displaying call screens.
-/// <code>CallCoreView</code> is the main container for the call interface, providing the following core capabilities:
-/// <ul>
-///   <li>
-///     <em>Multi-Layout Switching</em>: Supports switching between single-person float, multi-person grid, and picture-in-picture layouts.
-///   </li>
-///   <li>
-///     <em>Call Waiting Interaction</em>: Supports custom waiting animations before call connection.
-///   </li>
-///   <li>
-///     <em>Status Visualization</em>: Supports custom icons for different volume levels and network quality states.
-///   </li>
-///   <li>
-///     <em>User Personalization</em>: Supports setting participant avatars through User ID mapping.
-///   </li>
-/// </ul>
+/// Live core view component, providing view container for live streaming push and playback, supporting multi-person co-guest, PK and other features.
+/// <code>LiveCoreView</code> Live core view component, providing view container for live streaming push and playback.
+/// <code>LiveCoreView</code> provides view container for live streaming push and playback, supporting multi-person co-guest, PK and other features.
+/// Through this component, video rendering and interaction in live rooms can be implemented.
 /// <h3>Key Features</h3>
 /// <ul>
 ///   <li>
-///     <em>Multi-Layout Switching</em>：Supports switching between single-person float, multi-person grid, and picture-in-picture layouts.
+///     <em>Video Rendering</em>：Provides view container for live streaming push and playback.
 ///   </li>
 ///   <li>
-///     <em>Call Waiting Interaction</em>：Supports custom waiting animations before call connection.
+///     <em>Co-guest Support</em>：Supports multi-person co-guest feature.
 ///   </li>
 ///   <li>
-///     <em>Status Visualization</em>：Supports custom icons for different volume levels and network quality states.
+///     <em>PK Support</em>：Supports anchor PK feature.
 ///   </li>
 ///   <li>
-///     <em>User Personalization</em>：Supports setting participant avatars through User ID mapping.
+///     <em>Preview Outside Room</em>：Supports previewing live stream before entering the room.
 ///   </li>
 /// </ul>
 /// <blockquote>
-/// Note: This view component must be used together with <code>CallStore</code> to properly display call screens and receive call state updates.
+/// Important: Before using, you need to call <code>setLiveID(_:)</code> to set the live room ID first.
 ///
 /// </blockquote>
-/// <h3>Method Overview</h3>
-/// | Feature | Method | Description |
-/// |—––|——|———–|
-/// | Multi-Layout Switching | <code>setLayoutTemplate(_:)</code> | Switch call interface layout (single-person float/multi-person grid/PiP) |
-/// | Waiting Animation | <code>setWaitingAnimation(path:)</code> | Set the loading animation during call waiting state |
-/// | Volume Icons | <code>setVolumeLevelIcons(icons:)</code> | Customize icons for each volume level |
-/// | Network Icons | <code>setNetworkQualityIcons(icons:)</code> | Customize icons for each network quality level |
-/// | User Avatars | <code>setParticipantAvatars(avatars:)</code> | Set participant avatar images |
-/// <h3>Usage Example</h3>
-/// \code
-/// import AtomicXCore
-///
-/// // Create call view
-/// let callCoreView = CallCoreView(frame: view.bounds)
-/// view.addSubview(callCoreView)
-///
-/// // Set layout mode
-/// callCoreView.setLayoutTemplate(.grid)
-///
-/// // Set waiting animation
-/// callCoreView.setWaitingAnimation(path: "waiting_animation.json")
-///
-/// // Set volume icons
-/// callCoreView.setVolumeLevelIcons(icons: [
-///     .mute: "volume_mute",
-///     .low: "volume_low",
-///     .medium: "volume_medium",
-///     .high: "volume_high",
-///     .peak: "volume_peak"
-/// ])
-///
-/// // Set network quality icons
-/// callCoreView.setNetworkQualityIcons(icons: [
-///     .unknown: "network_unknown",
-///     .excellent: "network_excellent",
-///     .good: "network_good",
-///     .poor: "network_poor",
-///     .bad: "network_bad",
-///     .veryBad: "network_very_bad",
-///     .down: "network_down"
-/// ])
-///
-/// // Set participant avatars
-/// callCoreView.setParticipantAvatars(avatars: [
-///     "user_123": "avatar_user_123",
-///     "user_456": "avatar_user_456"
-/// ])
-///
-/// \endcode<h2>Topics</h2>
-/// <h3>Static Properties</h3>
+SWIFT_CLASS("_TtC11AtomicXCore12LiveCoreView")
+@interface LiveCoreView : UIView
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
+- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
+@end
+
+
+/// Minimal atomic view container that hosts a single render surface for AtomicPlayer. Only exposes the underlying render view without live-room, seat, co-guest or PK related APIs.
+/// <code>AtomicView</code> Minimal video render container designed for pure playback scenarios.
+/// <code>AtomicView</code> is a lightweight replacement of <code>LiveCoreView</code> for pure playback scenarios.
+/// It directly inherits from <code>LiveCoreView</code> and reuses its full render view management and lifecycle capabilities, additionally exposing the underlying native render view via <code>getPlayerRenderView()</code>.
+/// Recommended for scenarios that only need video rendering, without seat / co-guest / PK capabilities.
+/// <h3>Key Features</h3>
 /// <ul>
 ///   <li>
-///     <code>defaultAvatarImage - Default placeholder avatar.</code>
+///     <em>Minimal View Container</em>：Focused solely on video rendering for pure playback scenarios.
 ///   </li>
 ///   <li>
-///     <code>waitingAnimationImage - Call waiting animation.</code>
+///     <em>Inherits LiveCoreView</em>：Directly inherits from <code>LiveCoreView</code>, naturally reusing its render view management and lifecycle capabilities.
 ///   </li>
 ///   <li>
-///     <code>volumeImages - Volume status icon collection.</code>
-///   </li>
-///   <li>
-///     <code>networkQualityImages - Network signal icon collection.</code>
-///   </li>
-///   <li>
-///     <code>participantAvatars - Participant avatar collection.</code>
+///     <em>Seamless AtomicPlayer Integration</em>：Bind to AtomicPlayer via <code>setRenderView(_:)</code> to complete the video output pipeline.
 ///   </li>
 /// </ul>
-/// <h3>Configuration Methods</h3>
-/// <ul>
-///   <li>
-///     <code>setLayoutTemplate(_:) - Multi-layout switching.</code>
-///   </li>
-///   <li>
-///     <code>setWaitingAnimation(path:) - Configure waiting animation.</code>
-///   </li>
-///   <li>
-///     <code>setVolumeLevelIcons(icons:) - Configure volume icons.</code>
-///   </li>
-///   <li>
-///     <code>setNetworkQualityIcons(icons:) - Configure network icons.</code>
-///   </li>
-///   <li>
-///     <code>setParticipantAvatars(avatars:) - Configure participant avatars.</code>
-///   </li>
-/// </ul>
-/// <h2>See Also</h2>
-/// <ul>
-///   <li>
-///     <code>CallLayoutTemplate</code>
-///   </li>
-///   <li>
-///     <code>VolumeLevel</code>
-///   </li>
-/// </ul>
+SWIFT_CLASS("_TtC11AtomicXCore10AtomicView")
+@interface AtomicView : LiveCoreView
+- (void)didMoveToWindow;
+@end
+
+
 SWIFT_CLASS("_TtC11AtomicXCore12CallCoreView")
 @interface CallCoreView : UIView
 - (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
@@ -788,35 +711,6 @@ SWIFT_CLASS("_TtC11AtomicXCore10GroupStore")
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
-
-/// Live core view component, providing view container for live streaming push and playback, supporting multi-person co-guest, PK and other features.
-/// <code>LiveCoreView</code> Live core view component, providing view container for live streaming push and playback.
-/// <code>LiveCoreView</code> provides view container for live streaming push and playback, supporting multi-person co-guest, PK and other features.
-/// Through this component, video rendering and interaction in live rooms can be implemented.
-/// <h3>Key Features</h3>
-/// <ul>
-///   <li>
-///     <em>Video Rendering</em>：Provides view container for live streaming push and playback.
-///   </li>
-///   <li>
-///     <em>Co-guest Support</em>：Supports multi-person co-guest feature.
-///   </li>
-///   <li>
-///     <em>PK Support</em>：Supports anchor PK feature.
-///   </li>
-///   <li>
-///     <em>Preview Outside Room</em>：Supports previewing live stream before entering the room.
-///   </li>
-/// </ul>
-/// <blockquote>
-/// Important: Before using, you need to call <code>setLiveID(_:)</code> to set the live room ID first.
-///
-/// </blockquote>
-SWIFT_CLASS("_TtC11AtomicXCore12LiveCoreView")
-@interface LiveCoreView : UIView
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
-- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
-@end
 
 
 

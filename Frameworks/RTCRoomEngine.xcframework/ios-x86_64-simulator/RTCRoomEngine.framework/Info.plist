@@ -22,22 +22,22 @@
 	<string>????</string>
 	<key>CFBundleSupportedPlatforms</key>
 	<array>
-		<string>iPhoneOS</string>
+		<string>iPhoneSimulator</string>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>3.7.0.457</string>
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
-	<string>22C146</string>
+	<string></string>
 	<key>DTPlatformName</key>
-	<string>iphoneos</string>
+	<string>iphonesimulator</string>
 	<key>DTPlatformVersion</key>
 	<string>15.2</string>
 	<key>DTSDKBuild</key>
 	<string>22C146</string>
 	<key>DTSDKName</key>
-	<string>iphoneos15.2</string>
+	<string>iphonesimulator15.2</string>
 	<key>DTXcode</key>
 	<string>1620</string>
 	<key>DTXcodeBuild</key>
