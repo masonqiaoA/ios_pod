@@ -431,59 +431,6 @@ SWIFT_CLASS("_TtC11AtomicXCore18AITranscriberStore")
 
 @class NSCoder;
 
-/// Live core view component, providing view container for live streaming push and playback, supporting multi-person co-guest, PK and other features.
-/// <code>LiveCoreView</code> Live core view component, providing view container for live streaming push and playback.
-/// <code>LiveCoreView</code> provides view container for live streaming push and playback, supporting multi-person co-guest, PK and other features.
-/// Through this component, video rendering and interaction in live rooms can be implemented.
-/// <h3>Key Features</h3>
-/// <ul>
-///   <li>
-///     <em>Video Rendering</em>：Provides view container for live streaming push and playback.
-///   </li>
-///   <li>
-///     <em>Co-guest Support</em>：Supports multi-person co-guest feature.
-///   </li>
-///   <li>
-///     <em>PK Support</em>：Supports anchor PK feature.
-///   </li>
-///   <li>
-///     <em>Preview Outside Room</em>：Supports previewing live stream before entering the room.
-///   </li>
-/// </ul>
-/// <blockquote>
-/// Important: Before using, you need to call <code>setLiveID(_:)</code> to set the live room ID first.
-///
-/// </blockquote>
-SWIFT_CLASS("_TtC11AtomicXCore12LiveCoreView")
-@interface LiveCoreView : UIView
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
-- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
-@end
-
-
-/// Minimal atomic view container that hosts a single render surface for AtomicPlayer. Only exposes the underlying render view without live-room, seat, co-guest or PK related APIs.
-/// <code>AtomicView</code> Minimal video render container designed for pure playback scenarios.
-/// <code>AtomicView</code> is a lightweight replacement of <code>LiveCoreView</code> for pure playback scenarios.
-/// It directly inherits from <code>LiveCoreView</code> and reuses its full render view management and lifecycle capabilities, additionally exposing the underlying native render view via <code>getPlayerRenderView()</code>.
-/// Recommended for scenarios that only need video rendering, without seat / co-guest / PK capabilities.
-/// <h3>Key Features</h3>
-/// <ul>
-///   <li>
-///     <em>Minimal View Container</em>：Focused solely on video rendering for pure playback scenarios.
-///   </li>
-///   <li>
-///     <em>Inherits LiveCoreView</em>：Directly inherits from <code>LiveCoreView</code>, naturally reusing its render view management and lifecycle capabilities.
-///   </li>
-///   <li>
-///     <em>Seamless AtomicPlayer Integration</em>：Bind to AtomicPlayer via <code>setRenderView(_:)</code> to complete the video output pipeline.
-///   </li>
-/// </ul>
-SWIFT_CLASS("_TtC11AtomicXCore10AtomicView")
-@interface AtomicView : LiveCoreView
-- (void)didMoveToWindow;
-@end
-
-
 SWIFT_CLASS("_TtC11AtomicXCore12CallCoreView")
 @interface CallCoreView : UIView
 - (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
@@ -711,6 +658,35 @@ SWIFT_CLASS("_TtC11AtomicXCore10GroupStore")
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
+
+/// Live core view component, providing view container for live streaming push and playback, supporting multi-person co-guest, PK and other features.
+/// <code>LiveCoreView</code> Live core view component, providing view container for live streaming push and playback.
+/// <code>LiveCoreView</code> provides view container for live streaming push and playback, supporting multi-person co-guest, PK and other features.
+/// Through this component, video rendering and interaction in live rooms can be implemented.
+/// <h3>Key Features</h3>
+/// <ul>
+///   <li>
+///     <em>Video Rendering</em>：Provides view container for live streaming push and playback.
+///   </li>
+///   <li>
+///     <em>Co-guest Support</em>：Supports multi-person co-guest feature.
+///   </li>
+///   <li>
+///     <em>PK Support</em>：Supports anchor PK feature.
+///   </li>
+///   <li>
+///     <em>Preview Outside Room</em>：Supports previewing live stream before entering the room.
+///   </li>
+/// </ul>
+/// <blockquote>
+/// Important: Before using, you need to call <code>setLiveID(_:)</code> to set the live room ID first.
+///
+/// </blockquote>
+SWIFT_CLASS("_TtC11AtomicXCore12LiveCoreView")
+@interface LiveCoreView : UIView
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
+- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
+@end
 
 
 
